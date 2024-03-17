@@ -24,6 +24,17 @@ var QUALITIES map[string]int = map[string]int{
 	"masterpiece": 5,
 }
 
+var CITY_MAPPING map[string]string = map[string]string{
+	"5003":          "5003",
+	"Black Market":  "3013-Auction2",
+	"Bridgewatch":   "2004",
+	"Caerleon":      "3005",
+	"Fort Sterling": "4002",
+	"Lymhurst":      "1002",
+	"Martlock":      "3008",
+	"Thetford":      "0007",
+}
+
 func InitializeDbConnection() (*sql.DB, error) {
 	return sql.Open("sqlite3", AlbionDatabase)
 }
