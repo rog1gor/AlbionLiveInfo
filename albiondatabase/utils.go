@@ -16,6 +16,14 @@ var AlbionDatabase string = "Albion.db"
 var WORLD_JSON string = ALBIONDATABASE_PATH + "JSON/world.json"
 var ITEMS_JSON string = ALBIONDATABASE_PATH + "JSON/items.json"
 
+var QUALITIES map[string]int = map[string]int{
+	"normal":      1,
+	"good":        2,
+	"outstanding": 3,
+	"excellent":   4,
+	"masterpiece": 5,
+}
+
 func InitializeDbConnection() (*sql.DB, error) {
 	return sql.Open("sqlite3", AlbionDatabase)
 }

@@ -72,7 +72,7 @@ func ItemToReadable(item Item) ItemReadable {
 	if item.UNIQUE_NAME[len(item.UNIQUE_NAME)-2] == '@' {
 		enchantment = int(item.UNIQUE_NAME[len(item.UNIQUE_NAME)-1] - '0')
 	} else {
-		enchantment = -1
+		enchantment = 0
 	}
 	item_readable.ENCHANTMENT = enchantment
 

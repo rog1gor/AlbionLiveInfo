@@ -29,7 +29,7 @@ func propagateCitiesTable(conn *sql.DB) {
 		return
 	}
 
-	stmt, err := tx.Prepare("INSERT INTO Cities(IDX, NAME) VALUES(?, ?)")
+	stmt, err := tx.Prepare("INSERT INTO Cities(idx, name) VALUES(?, ?)")
 	if global.HandleErr(err) {
 		return
 	}
@@ -105,7 +105,7 @@ func propagateItemsTable(conn *sql.DB) {
 	}
 
 	stmt, err := tx.Prepare(
-		"INSERT INTO Items(IDX, NAME, TIER, ENCHANTMENT) VALUES(?, ?, ?, ?)")
+		"INSERT INTO Items(idx, name, tier, enchantment, quality) VALUES(?, ?, ?, ?, ?)")
 	if global.HandleErr(err) {
 		return
 	}
@@ -113,9 +113,11 @@ func propagateItemsTable(conn *sql.DB) {
 
 	for _, item := range getItems() {
 		item := ItemToReadable(item)
-		_, err = stmt.Exec(item.ID, item.NAME, item.TIER, item.ENCHANTMENT)
-		if global.HandleErr(err) {
-			return
+		for _, quality := range QUALITIES {
+			_, err = stmt.Exec(item.ID, item.NAME, item.TIER, item.ENCHANTMENT, quality)
+			if global.HandleErr(err) {
+				return
+			}
 		}
 	}
 	err = tx.Commit()

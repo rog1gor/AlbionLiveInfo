@@ -12,9 +12,9 @@ func createCitiesTable(conn *sql.DB) {
 	sqlStmt := `
 	DROP TABLE IF EXISTS Cities;
 	CREATE TABLE Cities (
-		ID integer not null primary key,
-		IDX text not null,
-		NAME text not null
+		id integer not null primary key,
+		idx text not null,
+		name text not null
 	);
 	DELETE FROM Cities;`
 
@@ -30,11 +30,12 @@ func createItemsTable(conn *sql.DB) {
 	sqlStmt := `
 	DROP TABLE IF EXISTS Items;
 	CREATE TABLE Items (
-		ID integer not null primary key,
-		IDX text not null,
-		NAME text not null,
-		TIER integer,
-		ENCHANTMENT integer
+		id integer not null primary key,
+		idx text not null,
+		name text not null,
+		tier integer not null,
+		enchantment integer,
+		quality integer not null
 	);
 	DELETE FROM Items;`
 	_, err := conn.Exec(sqlStmt)
