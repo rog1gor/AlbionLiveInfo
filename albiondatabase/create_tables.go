@@ -14,7 +14,8 @@ func createCitiesTable(conn *sql.DB) {
 	CREATE TABLE Cities (
 		id integer not null primary key,
 		idx text not null,
-		name text not null
+		name text not null,
+		https_response_name text not null
 	);
 	DELETE FROM Cities;`
 
@@ -52,11 +53,14 @@ func createMarketTable(conn *sql.DB) {
 	CREATE TABLE Markets (
 		item_id integer,
 		city_id integer,
-		quantity integer,
-		current_cost integer,
-		min_cost_7days integer,
-		max_cost_7days integer,
-		avg_cost_7days integer,
+		sell_price_min integer,
+		sell_price_min_date datetime,
+		sell_price_max integer,
+		sell_price_max_date datetime,
+		buy_price_min integer,
+		buy_price_min_date datetime,
+		buy_price_max integer,
+		buy_price_max_date datetime,
 		PRIMARY KEY (item_id, city_id),
 		FOREIGN KEY (item_id) REFERENCES Items(id),
 		FOREIGN KEY (city_id) REFERENCES Cities(id)
