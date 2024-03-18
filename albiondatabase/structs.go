@@ -64,7 +64,7 @@ type ItemReadable struct {
 func ItemToReadable(item Item) ItemReadable {
 	var item_readable ItemReadable
 
-	item_readable.ID = item.ID
+	item_readable.ID = item.UNIQUE_NAME
 	item_readable.NAME = getEnName(item)
 	item_readable.TIER = int(item.UNIQUE_NAME[1] - '0')
 
