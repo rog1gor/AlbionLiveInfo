@@ -1,6 +1,6 @@
 package albionAPI
 
-import "database/sql"
+var pkgPath = "albionAPI/"
 
 var AlbionApiURL string = "https://west.albion-online-data.com/"
 
@@ -20,8 +20,10 @@ var HttpsQueryMaxLen int = 4096
 var AllTypesAndMarketsQuerySufixLen int = len(SufixQueryStart) + len(allMarketsQuery) + len(QueryConcat) + len(allQualitiesQuery)
 var AllTypesAndMarketsQuerySpaceLeft int = HttpsQueryMaxLen - AllTypesAndMarketsQuerySufixLen
 
-var AlbionDatabase string = "Albion.db"
-
-func InitializeDbConnection() (*sql.DB, error) {
-	return sql.Open("sqlite3", AlbionDatabase)
+var Qualities map[int]string = map[int]string{
+	1: "normal",
+	2: "good",
+	3: "outstanding",
+	4: "excellent",
+	5: "masterpiece",
 }
